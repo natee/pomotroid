@@ -1,7 +1,7 @@
 {
   "name": "pomotroid",
-  "version": "0.0.1",
-  "author": "zhaoke <kerncink@gmail.com>",
+  "version": "0.1.0",
+  "author": "natee <kerncink@gmail.com>",
   "description": "番茄计时器",
   "license": "MIT",
   "main": "./dist/electron/main.js",
@@ -15,7 +15,8 @@
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-    "postinstall": ""
+    "postinstall": "",
+    "dist": "node .electron-vue/build.js && electron-builder -w -l -o"
   },
   "build": {
     "productName": "番茄计时器",
@@ -42,13 +43,33 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "artifactName": "番茄计时器-${version}-macos.${ext}",
+      "category": "public.app-category.productivity",
+      "icon": "./build/icons/icon.png"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "./build/icons/icon.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "artifactName": "番茄计时器-${version}-setup.${ext}"
+    },
+    "portable": {
+      "artifactName": "番茄计时器-${version}-portable.${ext}"
     },
     "linux": {
-      "icon": "build/icons"
+      "artifactName": "番茄计时器-${version}-linux.${ext}",
+      "category": "Utility",
+      "icon": "./build/icons",
+      "target": [
+        "AppImage",
+        "deb",
+        "snap",
+        "tar.gz"
+      ]
     }
   },
   "dependencies": {

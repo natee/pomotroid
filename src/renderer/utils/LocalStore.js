@@ -21,6 +21,7 @@ function generateSettings() {
     workRounds: 4,
     theme: null,
     tickSounds: false,
+    useBackground: true,
     timeLongBreak: 15,
     timeShortBreak: 5,
     timeWork: 25,

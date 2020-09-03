@@ -107,7 +107,7 @@ function createWindow() {
     resizable: isDevelopment,
     useContentSize: true,
     width: isDevelopment ? 1360 : 360,
-    height: isDevelopment ? 900 : 478,
+    height: isDevelopment ? 900 : 486,
     webPreferences: {
       enableRemoteModule: true,
       backgroundThrottling: false,

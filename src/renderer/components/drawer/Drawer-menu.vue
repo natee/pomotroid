@@ -2,7 +2,7 @@
   <div class="Drawer-menu">
     <div
       class="Drawer-menu-wrapper"
-      title="计时器设置"
+      title="计时器"
       @click="setDrawerComponent('appDrawerTimer')"
       :class="{ 'is-active': currentDrawer === 'appDrawerTimer' }"
     >
@@ -38,7 +38,7 @@
     </div>
     <div
       class="Drawer-menu-wrapper"
-      title="Options"
+      title="设置"
       @click="setDrawerComponent('appDrawerSettings')"
       :class="{ 'is-active': currentDrawer === 'appDrawerSettings' }"
     >
@@ -70,7 +70,7 @@
     </div>
     <div
       class="Drawer-menu-wrapper"
-      title="Themes"
+      title="主题"
       @click="setDrawerComponent('appDrawerTheme')"
       :class="{ 'is-active': currentDrawer === 'appDrawerTheme' }"
     >
@@ -95,7 +95,7 @@
     </div>
     <div
       class="Drawer-menu-wrapper"
-      title="About"
+      title="关于"
       @click="setDrawerComponent('appDrawerAbout')"
       :class="{ 'is-active': currentDrawer === 'appDrawerAbout' }"
     >
@@ -192,4 +192,10 @@ export default {
     border-bottom: 4px solid var(--color-accent);
   }
 }
+
+
+.app-theme--image .Drawer-menu {
+  background-color: transparent;
+}
+
 </style>

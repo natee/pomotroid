@@ -1,6 +1,5 @@
 <template>
   <div class="Container">
-    <p class="Drawer-heading">关于</p>
     <section>
       <svg
         version="1.2"

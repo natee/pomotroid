@@ -354,6 +354,7 @@ export default {
 
 <style lang="scss" scoped>
 .Button {
+  cursor: pointer;
   border: 2px solid var(--color-background-lightest);
   border-radius: 100%;
   display: flex;

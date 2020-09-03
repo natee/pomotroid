@@ -15,6 +15,7 @@ p {
 
 .Container {
   padding: 0 18px;
+  overflow: auto;
 }
 
 .Drawer-heading {
@@ -36,6 +37,7 @@ p {
   justify-content: center;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .Icon-wrapper--double--right {

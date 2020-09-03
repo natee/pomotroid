@@ -1,6 +1,5 @@
 <template>
   <div class="Container">
-    <p class="Drawer-heading">设置</p>
     <div class="Setting-wrapper">
       <p class="Setting-title">保持在顶部</p>
       <div
@@ -31,6 +30,14 @@
         class="Checkbox"
         @click="selectTickSounds"
         :class="tickSounds ? 'is-active' : 'is-inactive'"
+      ></div>
+    </div>
+    <div class="Setting-wrapper">
+      <p class="Setting-title">开启背景图</p>
+      <div
+        class="Checkbox"
+        @click="selectUseBackground"
+        :class="useBackground ? 'is-active' : 'is-inactive'"
       ></div>
     </div>
     <div class="Setting-wrapper">
@@ -97,6 +104,10 @@ export default {
 
     tickSounds() {
       return this.$store.getters.tickSounds
+    },
+
+    useBackground() {
+      return this.$store.getters.useBackground
     }
   },
 
@@ -159,6 +170,10 @@ export default {
 
     selectTickSounds() {
       this.$store.dispatch('setTickSounds', !this.tickSounds)
+    },
+
+    selectUseBackground() {
+      this.$store.dispatch('setUseBackground', !this.useBackground)
     }
   }
 }
@@ -180,7 +195,7 @@ export default {
     background-color: var(--color-accent);
     border-color: var(--color-background);
     &:hover {
-      background-color: var(--color-background);
+      // background-color: var(--color-background);
       border-color: var(--color-accent);
     }
   }

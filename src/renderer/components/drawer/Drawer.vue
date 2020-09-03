@@ -28,6 +28,9 @@ export default {
   computed: {
     currentDrawer() {
       return this.$store.getters.currentDrawer
+    },
+    useBackground() {
+      return this.$store.getters.useBackground
     }
   }
 }
@@ -41,5 +44,8 @@ export default {
   height: calc(100% - 68px);
   z-index: 1;
   -webkit-app-region: no-drag;
+}
+.app-theme--image .Drawer{
+  background-color: transparent;
 }
 </style>

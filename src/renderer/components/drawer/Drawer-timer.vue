@@ -1,6 +1,5 @@
 <template>
   <div class="Container">
-    <p class="Drawer-heading">计时</p>
     <div class="Setting-wrapper">
       <p class="Setting-title">专注</p>
       <p class="Setting-value">{{ localTimeWork + ':00' }}</p>
