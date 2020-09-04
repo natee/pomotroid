@@ -32,14 +32,7 @@
         :class="tickSounds ? 'is-active' : 'is-inactive'"
       ></div>
     </div>
-    <div class="Setting-wrapper">
-      <p class="Setting-title">开启背景图</p>
-      <div
-        class="Checkbox"
-        @click="selectUseBackground"
-        :class="useBackground ? 'is-active' : 'is-inactive'"
-      ></div>
-    </div>
+    
     <div class="Setting-wrapper">
       <p class="Setting-title">桌面通知</p>
       <div
@@ -104,11 +97,8 @@ export default {
 
     tickSounds() {
       return this.$store.getters.tickSounds
-    },
-
-    useBackground() {
-      return this.$store.getters.useBackground
     }
+
   },
 
   methods: {
@@ -172,9 +162,6 @@ export default {
       this.$store.dispatch('setTickSounds', !this.tickSounds)
     },
 
-    selectUseBackground() {
-      this.$store.dispatch('setUseBackground', !this.useBackground)
-    }
   }
 }
 </script>

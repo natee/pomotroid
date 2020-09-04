@@ -6,7 +6,6 @@ const state = {
   workRounds: parseInt(localStore.get('workRounds')),
   totalWorkRounds: 0,
   tickSounds: localStore.get('tickSounds'),
-  useBackground: localStore.get('useBackground'),
   timeLongBreak: parseInt(localStore.get('timeLongBreak')),
   timeShortBreak: parseInt(localStore.get('timeShortBreak')),
   timeWork: parseInt(localStore.get('timeWork')),
@@ -23,9 +22,6 @@ const getters = {
   },
   tickSounds() {
     return state.tickSounds
-  },
-  useBackground() {
-    return state.useBackground
   },
   totalWorkRounds() {
     return state.totalWorkRounds
@@ -73,10 +69,6 @@ const mutations = {
 
   SET_TICK_SOUNDS(state, payload) {
     state.tickSounds = payload
-  },
-
-  SET_USE_BACKGROUND(state, payload) {
-    state.useBackground = payload
   },
 
   SET_TIME_LONG_BREAK(state, payload) {
@@ -128,11 +120,6 @@ const actions = {
   setTickSounds({ commit }, payload) {
     commit('SET_TICK_SOUNDS', payload)
     localStore.set('tickSounds', payload)
-  },
-
-  setUseBackground({ commit }, payload) {
-    commit('SET_USE_BACKGROUND', payload)
-    localStore.set('useBackground', payload)
   },
 
   setTimeLongBreak({ commit }, payload) {

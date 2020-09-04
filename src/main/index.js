@@ -111,7 +111,8 @@ function createWindow() {
     webPreferences: {
       enableRemoteModule: true,
       backgroundThrottling: false,
-      nodeIntegration: true
+      nodeIntegration: true,
+      webSecurity: false
     }
   })
 

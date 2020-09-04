@@ -57,6 +57,7 @@ export default class LocalStore {
     const userDataPath = userDir()
     this.path = path.join(userDataPath, filename + '.json')
     this.data = parseDataFile(this.path, data)
+    console.log(this.data)
   }
 
   /**
@@ -133,11 +134,11 @@ export function initDirectory(path) {
  * @returns {string} The userData path.
  */
 export function userDir() {
-  let path
+  let electronPath
   try {
-    path = (electron.app || electron.remote.app).getPath('userData')
+    electronPath = (electron.app || electron.remote.app).getPath('userData')
   } catch (error) {
     logger.error('failed to get user direoctory', error)
   }
-  return path
+  return electronPath
 }

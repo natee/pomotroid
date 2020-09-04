@@ -17,7 +17,7 @@ import appNotificationWin from '@/components/notification/Notification-win'
 import appTimer from '@/components/timer/Timer'
 import appTitlebar from '@/components/Titlebar'
 import themer from '@/utils/Themer'
-import image1 from './assets/images/forest-1.jpeg'
+import userImage from "@/utils/UserImage";
 
 export default {
   name: 'pomotroid',
@@ -54,6 +54,10 @@ export default {
 
     useBackground() {
       return this.$store.getters.useBackground
+    },
+
+    usedImage() {
+      return this.$store.getters.usedImage
     }
   },
 
@@ -61,6 +65,9 @@ export default {
     if (!this.theme || this.theme === 'pomotroid') return
     themer.apply(this.theme)
 
+    if (this.useBackground) {
+      userImage.apply(this.usedImage)
+    }
   }
 }
 </script>
@@ -80,7 +87,8 @@ export default {
   right: 0px;
   bottom: 0px;
   left: 0px;
-  background-image: url(./assets/images/forest-1.jpeg);
+  // https://stackoverflow.com/questions/59687869/how-to-use-css-variable-in-background-image-in-webpack
+  background-image: var(--used-image);
   background-size: cover;
   background-position: center;
   opacity: 0.5

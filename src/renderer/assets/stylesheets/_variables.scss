@@ -33,4 +33,5 @@ $transitionSnappy: all 0.3s cubic-bezier(0.07, 0.95, 0, 1);
   --color-foreground: #{$colorWhite};
   --color-foreground-darker: #{$colorBlueGrey--lighter};
   --color-foreground-darkest: #{$colorBlueWhite};
+  --used-image: url('');
 }

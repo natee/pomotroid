@@ -16,7 +16,7 @@ const state = {
   minToTrayOnClose: localStore.get('minToTrayOnClose'),
   notifications: localStore.get('notifications'),
   os: process.platform,
-  theme: localStore.get('theme') || 'Pomotroid'
+  theme: localStore.get('theme') || 'Pomotroid',
 }
 
 const getters = {
@@ -58,7 +58,8 @@ const getters = {
 
   theme() {
     return state.theme
-  }
+  },
+
 }
 
 const mutations = {
@@ -72,7 +73,8 @@ const mutations = {
 
   TOGGLE_DRAWER(state) {
     state.drawerOpen = !state.drawerOpen
-  }
+  },
+
 }
 
 const actions = {
@@ -86,7 +88,8 @@ const actions = {
 
   toggleDrawer({ commit }) {
     commit('TOGGLE_DRAWER')
-  }
+  },
+
 }
 
 export default {
