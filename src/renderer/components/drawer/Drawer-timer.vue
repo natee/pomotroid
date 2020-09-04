@@ -1,8 +1,10 @@
 <template>
   <div class="Container">
     <div class="Setting-wrapper">
-      <p class="Setting-title">专注</p>
-      <p class="Setting-value">{{ localTimeWork + ':00' }}</p>
+      <div class="Setting-head">
+        <span class="Setting-title">专注</span>
+        <span class="Setting-value">{{ localTimeWork + ":00" }}</span>
+      </div>
       <div class="Slider-wrapper">
         <input
           type="range"
@@ -21,8 +23,11 @@
     </div>
 
     <div class="Setting-wrapper">
-      <p class="Setting-title">小放松</p>
-      <p class="Setting-value">{{ localTimeShortBreak + ':00' }}</p>
+      <div class="Setting-head">
+        <p class="Setting-title">小放松</p>
+        <p class="Setting-value">{{ localTimeShortBreak + ":00" }}</p>
+      </div>
+
       <div class="Slider-wrapper">
         <input
           type="range"
@@ -41,8 +46,11 @@
     </div>
 
     <div class="Setting-wrapper">
-      <p class="Setting-title">大放松</p>
-      <p class="Setting-value">{{ localTimeLongBreak + ':00' }}</p>
+      <div class="Setting-head">
+        <p class="Setting-title">大放松</p>
+        <p class="Setting-value">{{ localTimeLongBreak + ":00" }}</p>
+      </div>
+
       <div class="Slider-wrapper">
         <input
           type="range"
@@ -61,8 +69,11 @@
     </div>
 
     <div class="Setting-wrapper">
-      <p class="Setting-title">轮次</p>
-      <p class="Setting-value">{{ localWorkRounds }}</p>
+      <div class="Setting-head">
+        <p class="Setting-title">轮次</p>
+        <p class="Setting-value">{{ localWorkRounds }}</p>
+      </div>
+
       <div class="Slider-wrapper">
         <input
           type="range"
@@ -76,7 +87,7 @@
         <div
           class="Slider-bar Slider-bar--blueGrey"
           :style="{
-            width: calcRoundPercentage(localWorkRounds, maxRounds) + '%'
+            width: calcRoundPercentage(localWorkRounds, maxRounds) + '%',
           }"
         ></div>
       </div>
@@ -89,10 +100,10 @@
 </template>
 
 <script>
-import { EventBus } from '@/utils/EventBus'
+import { EventBus } from "@/utils/EventBus";
 
 export default {
-  name: 'Drawer-timer',
+  name: "Drawer-timer",
 
   data() {
     return {
@@ -101,123 +112,130 @@ export default {
       localTimeWork: 0,
       localWorkRounds: 0,
       maxTime: 90,
-      maxRounds: 12
-    }
+      maxRounds: 12,
+    };
   },
 
   computed: {
     // store getters
     currentRound() {
-      return this.$store.getters.currentRound
+      return this.$store.getters.currentRound;
     },
 
     timeLongBreak() {
-      return this.$store.getters.timeLongBreak
+      return this.$store.getters.timeLongBreak;
     },
 
     timeShortBreak() {
-      return this.$store.getters.timeShortBreak
+      return this.$store.getters.timeShortBreak;
     },
 
     timeWork() {
-      return this.$store.getters.timeWork
+      return this.$store.getters.timeWork;
     },
 
     workRounds() {
-      return this.$store.getters.workRounds
-    }
+      return this.$store.getters.workRounds;
+    },
   },
 
   methods: {
     calcPercentage(val, max) {
-      return (val / max) * 100
+      return (val / max) * 100;
     },
 
     // complex conditional to correctly position slider-bar for round slider
     calcRoundPercentage(val, max) {
-      const percentage = (val / max) * 100
+      const percentage = (val / max) * 100;
       if (percentage > 25 && percentage < 34) {
-        return percentage - 6
+        return percentage - 6;
       } else if (percentage > 33 && percentage < 66) {
-        return percentage - 5.5
+        return percentage - 5.5;
       } else if (percentage > 50) {
-        return percentage - 4
+        return percentage - 4;
       } else {
-        return percentage - 7
+        return percentage - 7;
       }
     },
 
     checkToResetTimer(setting) {
       if (this.currentRound === setting) {
-        EventBus.$emit('timer-init', {
-          auto: false
-        })
-        EventBus.$emit('call-timer-reset')
+        EventBus.$emit("timer-init", {
+          auto: false,
+        });
+        EventBus.$emit("call-timer-reset");
       }
     },
 
     initTimes() {
-      this.localTimeLongBreak = this.timeLongBreak
-      this.localTimeShortBreak = this.timeShortBreak
-      this.localTimeWork = this.timeWork
-      this.localWorkRounds = this.workRounds
+      this.localTimeLongBreak = this.timeLongBreak;
+      this.localTimeShortBreak = this.timeShortBreak;
+      this.localTimeWork = this.timeWork;
+      this.localWorkRounds = this.workRounds;
     },
 
     resetDefaults() {
-      this.$store.dispatch('resetDefaults')
-      this.initTimes()
-      EventBus.$emit('timer-init', {
-        auto: false
-      })
-      EventBus.$emit('call-timer-reset')
+      this.$store.dispatch("resetDefaults");
+      this.initTimes();
+      EventBus.$emit("timer-init", {
+        auto: false,
+      });
+      EventBus.$emit("call-timer-reset");
     },
 
     setTimeLongBreak(e, setting) {
-      this.$store.dispatch('setTimeLongBreak', parseInt(e.target.value))
-      this.checkToResetTimer(setting)
+      this.$store.dispatch("setTimeLongBreak", parseInt(e.target.value));
+      this.checkToResetTimer(setting);
     },
 
     setTimeShortBreak(e, setting) {
-      this.$store.dispatch('setTimeShortBreak', parseInt(e.target.value))
-      this.checkToResetTimer(setting)
+      this.$store.dispatch("setTimeShortBreak", parseInt(e.target.value));
+      this.checkToResetTimer(setting);
     },
 
     setTimeWork(e, setting) {
-      this.$store.dispatch('setTimeWork', parseInt(e.target.value))
-      this.checkToResetTimer(setting)
+      this.$store.dispatch("setTimeWork", parseInt(e.target.value));
+      this.checkToResetTimer(setting);
     },
 
     setWorkRounds(e, setting) {
-      this.$store.dispatch('setWorkRounds', parseInt(e.target.value))
-    }
+      this.$store.dispatch("setWorkRounds", parseInt(e.target.value));
+    },
   },
 
   mounted() {
-    this.initTimes()
-  }
-}
+    this.initTimes();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .Setting-wrapper {
-  margin: 10px 0;
+  margin: 10px 0 25px;
   text-align: center;
+  clear: both;
+}
+
+.Setting-head {
+  overflow: hidden;
+  margin-bottom: 8px;
 }
 
 .Setting-title {
   color: var(--color-foreground-darkest);
   font-size: 14px;
   letter-spacing: 0.05em;
-  margin-bottom: 8px;
+  float: left;
 }
 
 .Setting-value {
   background-color: var(--color-background);
   border-radius: 4px;
-  display: inline-block;
-  font-family: 'RobotoMono', monospace;
+  // display: inline-block;
+  font-family: "RobotoMono", monospace;
   font-size: 12px;
   padding: 2px 6px;
+  float: right;
 }
 
 .TextButton {

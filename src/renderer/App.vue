@@ -61,7 +61,6 @@ export default {
     if (!this.theme || this.theme === 'pomotroid') return
     themer.apply(this.theme)
 
-
   }
 }
 </script>
