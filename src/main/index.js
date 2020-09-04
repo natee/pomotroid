@@ -2,7 +2,7 @@
 
 import { logger } from './../renderer/utils/logger'
 import { createLocalStore } from './../renderer/utils/LocalStore'
-import { app, BrowserWindow, ipcMain, Tray, Menu, nativeImage } from 'electron'
+import { app, BrowserWindow, ipcMain, Tray, Menu, nativeImage, protocol } from 'electron'
 
 const path = require('path')
 const localStore = createLocalStore()
@@ -27,6 +27,9 @@ const winURL =
 
 app.on('ready', () => {
   logger.info('app ready')
+
+  createProtocol()
+
   createWindow()
   const minToTray = localStore.get('minToTray')
   const alwaysOnTop = localStore.get('alwaysOnTop')
@@ -81,6 +84,21 @@ ipcMain.on('tray-icon-update', (event, image) => {
   tray.setImage(nativeImg)
 })
 
+// 用于加载 app 外的图片资源
+// https://stackoverflow.com/questions/61623156/electron-throws-not-allowed-to-load-local-resource-when-using-showopendialog/61623585#61623585
+function createProtocol() {
+  const protocolName = 'pomotroid'
+  protocol.registerFileProtocol(protocolName, (request, callback) => {
+    const url = request.url.replace(`${protocolName}://`, '')
+    try {
+      return callback(decodeURIComponent(url))
+    }
+    catch (error) {
+      console.error(error)
+    }
+  })
+}
+
 function createTray() {
   tray = new Tray(path.join(__static, 'icon.png'))
   tray.setToolTip('Pomotroid\nClick to Restore')
@@ -106,13 +124,13 @@ function createWindow() {
         : path.join(__static, 'icon.png'),
     resizable: isDevelopment,
     useContentSize: true,
-    width: isDevelopment ? 1360 : 360,
-    height: isDevelopment ? 900 : 486,
+    width: isDevelopment ? 540 : 360,
+    height: isDevelopment ? 729 : 486,
     webPreferences: {
       enableRemoteModule: true,
       backgroundThrottling: false,
       nodeIntegration: true,
-      webSecurity: false
+      // webSecurity: false
     }
   })
 

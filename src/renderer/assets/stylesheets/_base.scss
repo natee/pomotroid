@@ -66,3 +66,11 @@ p {
     color: var(--color-accent);
   }
 }
+
+.Icon-svg {
+  width: 16px;
+  height: 16px;
+  path {
+    fill: var(--color-background-lightest);
+  }
+}

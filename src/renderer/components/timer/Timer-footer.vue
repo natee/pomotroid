@@ -15,6 +15,7 @@
       <!-- reset -->
       <div class="Icon-wrapper" title="重置当前回合" @click="callForReset">
         <svg
+          class="Icon-svg"
           viewBox="0 0 1024 1024"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -30,6 +31,7 @@
       <!-- skip -->
       <div class="Icon-wrapper" title="跳过" @click="skipRound">
         <svg
+          class="Icon-svg"
           viewBox="0 0 1024 1024"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -51,6 +53,7 @@
       >
         <transition name="fade" mode="out-in">
           <svg
+            class="Icon-svg"
             v-if="localVolume > 0"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -66,6 +69,7 @@
             </g>
           </svg>
           <svg
+            class="Icon-svg"
             v-else
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -82,24 +86,6 @@
           </svg>
         </transition>
       </div>
-
-      <!-- volume slider -->
-      <transition name="fade">
-        <div
-          class="Slider-wrapper Slider-wrapper--vert"
-          v-show="!volumeSliderHidden"
-        >
-          <input
-            type="range"
-            min="0"
-            max="100"
-            class="Slider"
-            v-model="localVolume"
-            @change="setVolume"
-          />
-          <div class="Slider-bar Slider-bar--blueGrey"></div>
-        </div>
-      </transition>
     </div>
   </section>
 </template>
@@ -147,24 +133,6 @@ export default {
       EventBus.$emit("call-timer-reset");
     },
 
-    /**
-     * Hides the volume slider unless the last recorded mouse position
-     * falls within a range containing the volume slider.
-     */
-    volumeSliderTimeout() {
-      setInterval(() => {
-        if (
-          this.currentMousePosition.x >= 305 &&
-          this.currentMousePosition.x <= 355 &&
-          this.currentMousePosition.y >= 305 &&
-          this.currentMousePosition.y <= 455
-        ) {
-        } else {
-          this.volumeSliderHidden = true;
-        }
-      }, 6000);
-    },
-
     skipRound() {
       EventBus.$emit("timer-completed");
     },
@@ -179,16 +147,11 @@ export default {
         this.localVolume = "0";
         this.$store.dispatch("setVolume", 0);
       }
-    },
-
-    setVolume(e) {
-      this.$store.dispatch("setVolume", parseInt(e.target.value));
-    },
+    }
   },
 
   mounted() {
     this.localVolume = this.volume;
-    this.volumeSliderTimeout();
 
     // record last mouse position for volume slider timeout
     window.addEventListener("mousemove", (e) => {
@@ -216,17 +179,10 @@ export default {
   background: rgba(254,254,254,0.2);
   border-radius: 50%;
   margin-left: 10px;
-  svg {
-    width: 16px;
-    height: 16px;
-    path {
-      fill: var(--color-background-lightest);
-    }
-  }
 
   &:hover{
     background: rgba(254,254,254,0.1);
-    svg path {
+    .Icon-svg path {
       fill: var(--color-accent);
     }
   }
@@ -241,23 +197,4 @@ export default {
   }
 }
 
-.Slider-wrapper {
-  position: absolute;
-  top: -74px;
-  right: -21px;
-}
-
-.Slider {
-  &::-webkit-slider-runnable-track {
-    background-color: var(--color-background-lightest);
-  }
-  &::-webkit-slider-thumb {
-    margin-top: -7px;
-    transition: $transitionDefault;
-    &:hover {
-      background-color: var(--color-accent);
-      border-color: var(--color-accent);
-    }
-  }
-}
 </style>

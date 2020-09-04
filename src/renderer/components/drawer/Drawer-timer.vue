@@ -1,6 +1,6 @@
 <template>
-  <div class="Container">
-    <div class="Setting-wrapper">
+  <div class="Container Container-timer">
+    <div class="Setting-block">
       <div class="Setting-head">
         <span class="Setting-title">专注</span>
         <span class="Setting-value">{{ localTimeWork + ":00" }}</span>
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="Setting-wrapper">
+    <div class="Setting-block">
       <div class="Setting-head">
         <p class="Setting-title">小放松</p>
         <p class="Setting-value">{{ localTimeShortBreak + ":00" }}</p>
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <div class="Setting-wrapper">
+    <div class="Setting-block">
       <div class="Setting-head">
         <p class="Setting-title">大放松</p>
         <p class="Setting-value">{{ localTimeLongBreak + ":00" }}</p>
@@ -68,7 +68,7 @@
       </div>
     </div>
 
-    <div class="Setting-wrapper">
+    <div class="Setting-block">
       <div class="Setting-head">
         <p class="Setting-title">轮次</p>
         <p class="Setting-value">{{ localWorkRounds }}</p>
@@ -93,7 +93,7 @@
       </div>
     </div>
 
-    <div class="Setting-wrapper">
+    <div class="Setting-block">
       <p class="TextButton" @click="resetDefaults">恢复默认设置</p>
     </div>
   </div>
@@ -210,32 +210,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Setting-wrapper {
-  margin: 10px 0 25px;
-  text-align: center;
-  clear: both;
-}
+.Container-timer{
+  .Setting-block {
+    margin: 10px 0 25px;
+    text-align: center;
+    clear: both;
+  }
 
-.Setting-head {
-  overflow: hidden;
-  margin-bottom: 8px;
-}
+  .Setting-head {
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
 
-.Setting-title {
-  color: var(--color-foreground-darkest);
-  font-size: 14px;
-  letter-spacing: 0.05em;
-  float: left;
-}
+  .Setting-title {
+    color: var(--color-foreground-darkest);
+    float: left;
+  }
 
-.Setting-value {
-  background-color: var(--color-background);
-  border-radius: 4px;
-  // display: inline-block;
-  font-family: "RobotoMono", monospace;
-  font-size: 12px;
-  padding: 2px 6px;
-  float: right;
+  .Setting-value {
+    background-color: var(--color-background);
+    border-radius: 4px;
+    font-family: "RobotoMono", monospace;
+    font-size: 12px;
+    padding: 2px 6px;
+    float: right;
+  }
 }
 
 .TextButton {

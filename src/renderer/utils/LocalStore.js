@@ -57,7 +57,6 @@ export default class LocalStore {
     const userDataPath = userDir()
     this.path = path.join(userDataPath, filename + '.json')
     this.data = parseDataFile(this.path, data)
-    console.log(this.data)
   }
 
   /**

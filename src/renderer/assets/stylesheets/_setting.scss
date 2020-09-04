@@ -1,0 +1,40 @@
+.Checkbox {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-background-lightest);
+  border-radius: 100%;
+  display: inline-block;
+  transition: $transitionDefault;
+  width: 16px;
+  height: 16px;
+  &:hover {
+    border-color: var(--color-accent);
+  }
+  &.is-active {
+    background-color: var(--color-accent);
+    border-color: var(--color-background);
+    &:hover {
+      // background-color: var(--color-background);
+      border-color: var(--color-accent);
+    }
+  }
+}
+
+.Container {
+  max-height: calc(100% - 36px);
+  overflow-y: auto;
+}
+
+.Setting-wrapper {
+  background-color: var(--color-background);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+  padding: 12px;
+}
+
+.Setting-title {
+  color: var(--color-foreground-darker);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}

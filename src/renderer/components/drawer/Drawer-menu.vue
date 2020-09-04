@@ -9,10 +9,10 @@
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
           <svg
+            class="Icon-svg"
             version="1.2"
             baseProfile="tiny"
             id="timer-icon"
-            class="Icon"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px"
@@ -45,6 +45,7 @@
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
           <svg
+            class="Icon-svg"
             version="1.2"
             baseProfile="tiny"
             xmlns="http://www.w3.org/2000/svg"
@@ -72,6 +73,7 @@
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
           <svg
+            class="Icon-svg"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +98,7 @@
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
           <svg
+            class="Icon-svg"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -120,6 +123,7 @@
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
           <svg
+            class="Icon-svg"
             viewBox="0 0 1027 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -208,16 +212,6 @@ export default {
   height: 100%;
   &.is-active {
     border-bottom: 4px solid var(--color-accent);
-  }
-}
-
-.Icon-wrapper {
-  svg {
-    width: 16px;
-    height: 16px;
-    path {
-      fill: var(--color-background-lightest);
-    }
   }
 }
 
