@@ -125,7 +125,7 @@ $imgWidth: 30%;
 }
 
 .Image-item {
-  display: inline-block;
+  float: left;
   cursor: pointer;
   border: 1px solid var(--color-background-lightest);
   border-radius: 4px;
@@ -198,6 +198,7 @@ $imgWidth: 30%;
 }
 
 .Image-uploader {
+  margin-right: 0;
   .Icon-svg {
     position: absolute;
     top: 50%;

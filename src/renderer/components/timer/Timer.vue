@@ -21,22 +21,18 @@
         >
           <div class="Button-icon-wrapper">
             <svg
-              version="1.2"
-              baseProfile="tiny"
-              id="Layer_1"
+              class="Icon-svg"
+              viewBox="0 0 1024 1024"
+              version="1.1"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              x="0px"
-              y="0px"
-              viewBox="0 0 7.6 15"
-              xml:space="preserve"
-              height="15px"
-              class="Icon--start"
+              p-id="14513"
+              width="16"
+              height="16"
             >
-              <polygon
-                fill="var(--color-foreground)"
-                points="0,0 0,15 7.6,7.4 "
-              />
+              <path
+                d="M273.841959 32.504242l634.647273 365.040485c104.463515 61.253818 100.538182 166.260364-1.318788 226.257455l-642.482425 370.036363c-52.224 28.765091-110.979879 45.009455-167.144727 11.264C51.851171 977.594182 38.787413 933.841455 38.787413 886.334061V137.510788C38.787413 90.003394 55.760989 46.250667 100.165353 18.773333 157.617959-15.003152 220.299171 1.241212 273.841959 32.504242z"
+                p-id="14514"
+              ></path>
             </svg>
           </div>
         </div>
@@ -48,21 +44,18 @@
         >
           <div class="Button-icon-wrapper">
             <svg
-              version="1.2"
-              baseProfile="tiny"
-              id="Layer_1"
+              class="Icon-svg"
+              viewBox="0 0 1024 1024"
+              version="1.1"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              x="0px"
-              y="0px"
-              viewBox="0 0 7.6 15"
-              xml:space="preserve"
-              height="15px"
+              p-id="14513"
+              width="16"
+              height="16"
             >
-              <polygon
-                fill="var(--color-foreground)"
-                points="0,0 0,15 7.6,7.4 "
-              />
+              <path
+                d="M273.841959 32.504242l634.647273 365.040485c104.463515 61.253818 100.538182 166.260364-1.318788 226.257455l-642.482425 370.036363c-52.224 28.765091-110.979879 45.009455-167.144727 11.264C51.851171 977.594182 38.787413 933.841455 38.787413 886.334061V137.510788C38.787413 90.003394 55.760989 46.250667 100.165353 18.773333 157.617959-15.003152 220.299171 1.241212 273.841959 32.504242z"
+                p-id="14514"
+              ></path>
             </svg>
           </div>
         </div>
@@ -135,7 +128,7 @@ export default {
     appTrayIcon,
     appTimerController,
     appTimerDial,
-    appTimerFooter
+    appTimerFooter,
   },
 
   data() {
@@ -144,7 +137,7 @@ export default {
       minutes: 1,
       timerActive: false,
       timerStarted: false,
-      timerWorker: null
+      timerWorker: null,
     }
   },
 
@@ -191,7 +184,7 @@ export default {
       const seconds = time - minutes * 60
       return {
         minutes,
-        seconds
+        seconds,
       }
     },
 
@@ -209,9 +202,9 @@ export default {
 
       return {
         remainingMinutes,
-        remainingSeconds
+        remainingSeconds,
       }
-    }
+    },
   },
 
   methods: {
@@ -249,7 +242,7 @@ export default {
           this.currentTime = message.data.elapsed
           EventBus.$emit('timer-tick', {
             elapsed: message.data.elapsed,
-            total: message.data.totalSeconds
+            total: message.data.totalSeconds,
           })
           break
         default:
@@ -307,7 +300,7 @@ export default {
       this.timerWorker.postMessage({ event: 'start' })
       this.timerActive = true
       this.timerStarted = true
-    }
+    },
   },
 
   mounted() {
@@ -348,7 +341,7 @@ export default {
       },
       true
     )
-  }
+  },
 }
 </script>
 
@@ -384,6 +377,10 @@ export default {
   align-items: center;
   display: flex;
   height: 100%;
+
+  .Icon-svg {
+    fill: var(--color-foreground);
+  }
 }
 
 .Dial-time {

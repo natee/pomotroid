@@ -2,7 +2,7 @@
   <section class="Container Footer">
     <div class="Round-wrapper">
       <p>
-        {{ round + "/" + workRounds }}
+        {{ round + '/' + workRounds }}
         <span
           v-if="totalWorkRounds > 0"
           class="Total-rounds"
@@ -58,7 +58,8 @@
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
-            width="32" height="32"
+            width="32"
+            height="32"
             viewBox="0 0 122.88 115.67"
           >
             <g>
@@ -74,7 +75,8 @@
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
-            width="32" height="32"
+            width="32"
+            height="32"
             viewBox="0 0 122.88 120.97"
           >
             <g>
@@ -91,10 +93,10 @@
 </template>
 
 <script>
-import { EventBus } from "@/utils/EventBus";
+import { EventBus } from '@/utils/EventBus'
 
 export default {
-  name: "TimerFooter",
+  name: 'TimerFooter',
   data() {
     return {
       currentMousePosition: {
@@ -103,63 +105,63 @@ export default {
       },
       localVolume: 0,
       volumeSliderHidden: true,
-    };
+    }
   },
   computed: {
     // store getters
     currentRound() {
-      return this.$store.getters.currentRound;
+      return this.$store.getters.currentRound
     },
 
     round() {
-      return this.$store.getters.round;
+      return this.$store.getters.round
     },
 
     workRounds() {
-      return this.$store.getters.workRounds;
+      return this.$store.getters.workRounds
     },
 
     totalWorkRounds() {
-      return this.$store.getters.totalWorkRounds;
+      return this.$store.getters.totalWorkRounds
     },
 
     volume() {
-      return this.$store.getters.volume;
+      return this.$store.getters.volume
     },
   },
 
   methods: {
     callForReset() {
-      EventBus.$emit("call-timer-reset");
+      EventBus.$emit('call-timer-reset')
     },
 
     skipRound() {
-      EventBus.$emit("timer-completed");
+      EventBus.$emit('timer-completed')
     },
 
     toggleMute() {
       // set volume to zero if not muted
       // otherwise set to 100 (default)
-      if (this.localVolume === "0") {
-        this.localVolume = "100";
-        this.$store.dispatch("setVolume", 100);
+      if (this.localVolume === '0') {
+        this.localVolume = '100'
+        this.$store.dispatch('setVolume', 100)
       } else {
-        this.localVolume = "0";
-        this.$store.dispatch("setVolume", 0);
+        this.localVolume = '0'
+        this.$store.dispatch('setVolume', 0)
       }
-    }
+    },
   },
 
   mounted() {
-    this.localVolume = this.volume;
+    this.localVolume = this.volume
 
     // record last mouse position for volume slider timeout
-    window.addEventListener("mousemove", (e) => {
-      this.currentMousePosition.x = e.clientX;
-      this.currentMousePosition.y = e.clientY;
-    });
+    window.addEventListener('mousemove', e => {
+      this.currentMousePosition.x = e.clientX
+      this.currentMousePosition.y = e.clientY
+    })
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -176,12 +178,12 @@ export default {
 
 .Icon-wrapper {
   padding: 8px;
-  background: rgba(254,254,254,0.2);
+  background: rgba(254, 254, 254, 0.1);
   border-radius: 50%;
   margin-left: 10px;
 
-  &:hover{
-    background: rgba(254,254,254,0.1);
+  &:hover {
+    background: rgba(254, 254, 254, 0.1);
     .Icon-svg path {
       fill: var(--color-accent);
     }
@@ -196,5 +198,4 @@ export default {
     font-size: 0.7rem;
   }
 }
-
 </style>
