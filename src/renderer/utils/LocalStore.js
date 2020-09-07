@@ -20,7 +20,7 @@ function generateSettings() {
     notifications: true,
     workRounds: 4,
     theme: null,
-    tickSounds: false,
+    tickSounds: true,
     useBackground: true,
     timeLongBreak: 15,
     timeShortBreak: 5,

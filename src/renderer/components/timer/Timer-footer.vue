@@ -94,6 +94,7 @@
 
 <script>
 import { EventBus } from '@/utils/EventBus'
+import { ipcRenderer } from 'electron'
 
 export default {
   name: 'TimerFooter',
@@ -159,6 +160,17 @@ export default {
     window.addEventListener('mousemove', e => {
       this.currentMousePosition.x = e.clientX
       this.currentMousePosition.y = e.clientY
+    })
+
+    // register listener for window-restore events
+    ipcRenderer.on('volume-off', (event, arg) => {
+      this.localVolume = 0
+      this.$store.dispatch('setVolume', 0)
+    })
+
+    ipcRenderer.on('volume-on', (event, arg) => {
+      this.localVolume = 100
+      this.$store.dispatch('setVolume', 100)
     })
   },
 }

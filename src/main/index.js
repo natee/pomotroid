@@ -2,7 +2,15 @@
 
 import { logger } from './../renderer/utils/logger'
 import { createLocalStore } from './../renderer/utils/LocalStore'
-import { app, BrowserWindow, ipcMain, Tray, Menu, nativeImage, protocol } from 'electron'
+import {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Tray,
+  Menu,
+  nativeImage,
+  protocol,
+} from 'electron'
 
 const path = require('path')
 const localStore = createLocalStore()
@@ -20,17 +28,17 @@ if (notDevelopment) {
 }
 
 let mainWindow, tray
-const winURL =
-  isDevelopment
-    ? 'http://localhost:9080'
-    : `file://${__dirname}/index.html`
+const winURL = isDevelopment
+  ? 'http://localhost:9080'
+  : `file://${__dirname}/index.html`
 
 app.on('ready', () => {
   logger.info('app ready')
 
   createProtocol()
-
   createWindow()
+  createMenu()
+
   const minToTray = localStore.get('minToTray')
   const alwaysOnTop = localStore.get('alwaysOnTop')
 
@@ -92,16 +100,16 @@ function createProtocol() {
     const url = request.url.replace(`${protocolName}://`, '')
     try {
       return callback(decodeURIComponent(url))
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error)
     }
   })
 }
 
+// 托盘操作
 function createTray() {
   tray = new Tray(path.join(__static, 'icon.png'))
-  tray.setToolTip('Pomotroid\nClick to Restore')
+  tray.setToolTip('🍅番茄计时器\n点击复原')
   tray.setContextMenu(Menu.buildFromTemplate([{ role: 'quit' }]))
   tray.on('click', () => {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
@@ -131,7 +139,7 @@ function createWindow() {
       backgroundThrottling: false,
       nodeIntegration: true,
       // webSecurity: false
-    }
+    },
   })
 
   mainWindow.loadURL(winURL)
@@ -149,6 +157,78 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+}
+
+function createMenu() {
+  const menuTemplate = [
+    {
+      label: '操作',
+      submenu: [
+        {
+          label: '静音',
+          click: () => {
+            mainWindow.webContents.send('volume-off')
+          }
+        },
+        {
+          label: '取消静音',
+          click: () => {
+            mainWindow.webContents.send('volume-on')
+          }
+        },
+        
+      ],
+    },
+    {
+      label: '窗口',
+      submenu: [
+        {
+          label: '最小化',
+          role: 'minimize'
+        }
+      ],
+    },
+    {
+      label: '帮助',
+      submenu: [
+        {
+          label: '关于番茄计时器',
+          role: 'about'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: '使用帮助',
+          click: async () => {
+            const { shell } = require('electron')
+            await shell.openExternal('https://github.com/natee/pomotroid')
+          }
+        },
+      ],
+    }
+  ]
+
+  // osx 第一个菜单是应用程序名称
+  if (process.platform === 'darwin') {
+    console.log('app:',app)
+    menuTemplate.unshift({
+      label: app.getName(),
+      submenu: [
+        { label: '服务', role: 'services' },
+        {
+          label: '退出',
+          accelerator: 'CmdOrCtrl+Q',
+          click() {
+            app.quit()
+          },
+        },
+      ],
+    })
+  }
+
+  const appMenu = Menu.buildFromTemplate(menuTemplate)
+  Menu.setApplicationMenu(appMenu)
 }
 
 /**
