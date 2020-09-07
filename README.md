@@ -1,8 +1,8 @@
 <div align="center">
-  <img alt="Pomotroid" src="github/images/pomotroid-title.png" width="800px">
+  <img alt="Pomotroid" src=".github/images/pomotroid-title.png" width="800px">
 </div>
 <div align="center">
-  <img alt="Pomotroid in action" src="github/images/pomotroid-screens.png" width="800px">
+  <img alt="Pomotroid in action" src=".github/images/pomotroid-screens.png" width="800px">
 </div>
 
 <p align="center">简洁美观的番茄计时器。</p>
@@ -38,7 +38,7 @@
 
 🍅番茄计时器提供了许多主题。它也是可主题化的，允许你自定义它的外观。
 
-![主题图片](./github/images/pomotroid_themes-preview--914x219.png)
+![主题图片](./.github/images/pomotroid_themes-preview--914x219.png)
 
 在[主题文档](./docs/themes/themes.md)处查看所有官方主题和创建自定义主题的方法。
 
@@ -46,7 +46,7 @@
 
 🍅番茄计时器默认提供了 3 张背景图片，你也可以上传自己喜欢的图片作为背景皮肤。
 
-![背景图图片](./github/images/pomotroid_images-preview--914x219.png)
+![背景图图片](./.github/images/pomotroid_images-preview--914x219.png)
 
 
 ## 安装
