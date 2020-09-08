@@ -1,6 +1,6 @@
 {
   "name": "pomotroid",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "natee <kerncink@gmail.com>",
   "description": "番茄计时器",
   "license": "MIT",
@@ -79,7 +79,6 @@
     "vue-electron": "^1.0.6",
     "vue-template-compiler": "^2.6.12",
     "vuex": "^3.0.1",
-    "vuex-electron": "^1.0.0",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0",
     "worker-loader": "^3.0.2"

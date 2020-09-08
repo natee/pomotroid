@@ -10,6 +10,7 @@ import {
   Menu,
   nativeImage,
   protocol,
+  screen,
 } from 'electron'
 
 const path = require('path')
@@ -106,16 +107,45 @@ function createProtocol() {
   })
 }
 
+function getNewWindowPosition() {
+  const windowBounds = mainWindow.getBounds()
+  const trayBounds = tray.getBounds()
+
+  const primaryDisplay = screen.getPrimaryDisplay()
+
+  // Center window horizontally below the tray icon
+  const x = Math.round(trayBounds.x + (trayBounds.width / 2) - (windowBounds.width / 2))
+
+  // Position window 4 pixels vertically below the tray icon
+  // Adjust according if tray is at the bottom
+  let y = Math.round(trayBounds.y + trayBounds.height + 4)
+  if (y > primaryDisplay.workAreaSize.height) {
+    y = trayBounds.y - trayBounds.height - windowBounds.height
+  }
+
+  return { x: x, y: y }
+}
+
+function toggleWindow() {
+  if (mainWindow === null) {
+    createWindow()
+  } else {
+    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+  }
+
+  if (process.platform === 'darwin') {
+    const position = getNewWindowPosition()
+    mainWindow.setPosition(position.x, position.y, false)
+  }
+}
+
 // 托盘操作
 function createTray() {
-  tray = new Tray(path.join(__static, 'icon.png'))
+  const trayIconFile = process.platform === 'darwin' ? 'icon--macos--tray.png' : 'icon.png'
+  tray = new Tray(path.join(__static, trayIconFile))
   tray.setToolTip('🍅番茄计时器\n点击复原')
-  tray.setContextMenu(Menu.buildFromTemplate([{ role: 'quit' }]))
   tray.on('click', () => {
-    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
-  })
-  tray.on('right-click', () => {
-    tray.popUpContextMenu()
+    toggleWindow()
   })
 }
 

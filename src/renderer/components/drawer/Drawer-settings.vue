@@ -41,7 +41,7 @@
         :class="notifications ? 'is-active' : 'is-inactive'"
       ></div>
     </div>
-    <div class="Setting-wrapper" v-if="os === 'win32'">
+    <div class="Setting-wrapper">
       <p class="Setting-title">最小化到托盘</p>
       <div
         class="Checkbox"
@@ -49,7 +49,7 @@
         :class="minToTray ? 'is-active' : 'is-inactive'"
       ></div>
     </div>
-    <div class="Setting-wrapper" v-if="os === 'win32'">
+    <div class="Setting-wrapper">
       <p class="Setting-title">关闭时最小化到托盘</p>
       <div
         class="Checkbox"
