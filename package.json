@@ -1,6 +1,6 @@
 {
   "name": "pomotroid",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "natee <kerncink@gmail.com>",
   "description": "番茄计时器",
   "license": "MIT",
@@ -43,7 +43,7 @@
       ]
     },
     "mac": {
-      "artifactName": "番茄计时器-${version}-macos.${ext}",
+      "artifactName": "pomotroid-${version}-macos.${ext}",
       "category": "public.app-category.productivity",
       "icon": "./build/icons/icon.png"
     },
@@ -55,13 +55,13 @@
       ]
     },
     "nsis": {
-      "artifactName": "番茄计时器-${version}-setup.${ext}"
+      "artifactName": "pomotroid-${version}-setup.${ext}"
     },
     "portable": {
-      "artifactName": "番茄计时器-${version}-portable.${ext}"
+      "artifactName": "pomotroid-${version}-portable.${ext}"
     },
     "linux": {
-      "artifactName": "番茄计时器-${version}-linux.${ext}",
+      "artifactName": "pomotroid-${version}-linux.${ext}",
       "category": "Utility",
       "icon": "./build/icons",
       "target": [

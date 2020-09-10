@@ -121,6 +121,9 @@ import appTimerDial from '@/components/timer/Timer-dial'
 import appTimerFooter from '@/components/timer/Timer-footer'
 import { EventBus } from '@/utils/EventBus'
 import { logger } from '@/utils/logger'
+import userHistory from '@/utils/History'
+// import { formatDate } from '@/utils/helper'
+
 
 export default {
   components: {
@@ -142,6 +145,10 @@ export default {
   },
 
   computed: {
+    roundStartTime() {
+      return this.$store.getters.roundStartTime
+    },
+
     // store getters
     currentRound() {
       return this.$store.getters.currentRound
@@ -300,6 +307,9 @@ export default {
       this.timerWorker.postMessage({ event: 'start' })
       this.timerActive = true
       this.timerStarted = true
+
+      // 记录开始时间
+      this.$store.dispatch('setStartTime', +new Date())
     },
   },
 
@@ -325,6 +335,15 @@ export default {
     EventBus.$on('call-timer-reset', () => {
       this.resetTimer()
       logger.info(`${this.currentRoundDisplay} round reset`)
+    })
+
+    EventBus.$on('store-round-end', () => {
+      const newData = {
+        start: this.roundStartTime,
+        end: +new Date(),
+        duration: this.timeWork
+      }
+      userHistory.storeData(newData)
     })
 
     // Bind event listener to Space key

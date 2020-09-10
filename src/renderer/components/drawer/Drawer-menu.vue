@@ -36,34 +36,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="Drawer-menu-wrapper"
-      title="设置"
-      @click="setDrawerComponent('appDrawerSettings')"
-      :class="{ 'is-active': currentDrawer === 'appDrawerSettings' }"
-    >
-      <div class="Drawer-menu-button">
-        <div class="Icon-wrapper">
-          <svg
-            class="Icon-svg"
-            version="1.2"
-            baseProfile="tiny"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 19.5 20"
-            width="18"
-          >
-            <path
-              d="M17.2,11c0-0.3,0.1-0.6,0.1-1s0-0.7-0.1-1l2.1-1.6c0.2-0.1,0.2-0.4,0.1-0.6l-2-3.5C17.3,3.1,17,3,16.8,3.1
-              l-2.5,1c-0.5-0.4-1.1-0.7-1.7-1l-0.4-2.7C12.2,0.2,12,0,11.7,0h-4C7.5,0,7.3,0.2,7.2,0.4L6.9,3.1c-0.6,0.3-1.2,0.6-1.7,1l-2.5-1
-              C2.4,3,2.2,3.1,2.1,3.3l-2,3.5C-0.1,6.9,0,7.2,0.2,7.4L2.3,9c0,0.3-0.1,0.6-0.1,1s0,0.7,0.1,1l-2.1,1.6C0,12.8-0.1,13,0.1,13.3
-              l2,3.5c0.1,0.2,0.4,0.3,0.6,0.2l2.5-1c0.5,0.4,1.1,0.7,1.7,1l0.4,2.6c0,0.2,0.2,0.4,0.5,0.4h4c0.3,0,0.5-0.2,0.5-0.4l0.4-2.6
-              c0.6-0.3,1.2-0.6,1.7-1l2.5,1c0.2,0.1,0.5,0,0.6-0.2l2-3.5c0.1-0.2,0.1-0.5-0.1-0.6L17.2,11z M9.7,13.5c-1.9,0-3.5-1.6-3.5-3.5
-              s1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S11.7,13.5,9.7,13.5z"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
+
     <div
       class="Drawer-menu-wrapper"
       title="主题"
@@ -116,25 +89,68 @@
     </div>
     <div
       class="Drawer-menu-wrapper"
-      title="关于"
-      @click="setDrawerComponent('appDrawerAbout')"
-      :class="{ 'is-active': currentDrawer === 'appDrawerAbout' }"
+      title="时间历程"
+      @click="setDrawerComponent('appDrawerHistory')"
+      :class="{ 'is-active': currentDrawer === 'appDrawerHistory' }"
+    >
+      <div class="Drawer-menu-button">
+        <div class="Icon-wrapper">
+          <svg
+            class="Icon-svg Icon-svg--calendar"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+          >
+            <path
+              d="M403.2 512l-224 0c-19.2 0-32 12.8-32 32 0 19.2 12.8 32 32 32l224 0c19.2 0 32-12.8 32-32C435.2 524.8 419.2 512 403.2 512z"
+              p-id="4042"
+            ></path>
+            <path
+              d="M403.2 672l-224 0c-19.2 0-32 12.8-32 32 0 19.2 12.8 32 32 32l224 0c19.2 0 32-12.8 32-32C435.2 684.8 419.2 672 403.2 672z"
+              p-id="4043"
+            ></path>
+            <path
+              d="M819.2 736 800 736l0-64c0-19.2-12.8-32-32-32s-32 12.8-32 32l0 96c0 19.2 3.2 32 19.2 32l64 0c19.2 0 32-12.8 32-32C851.2 748.8 838.4 736 819.2 736z"
+              p-id="4044"
+            ></path>
+            <path
+              d="M512 864 512 864l-64 0L153.6 864c-32 0-57.6-12.8-57.6-41.6L96 384l704 0 0 32 0 6.4c0 19.2 12.8 32 32 32s32-12.8 32-32L864 416l0-89.6L864 243.2C864 204.8 835.2 160 796.8 160L704 160 704 60.8C704 44.8 691.2 32 672 32s-32 12.8-32 28.8L640 160 288 160 288 60.8C288 44.8 275.2 32 256 32S224 44.8 224 60.8L224 160 99.2 160C60.8 160 32 204.8 32 243.2l0 633.6C32 912 60.8 928 99.2 928L448 928l64 0 0 0c19.2 0 32-12.8 32-32C544 876.8 531.2 864 512 864zM96 294.4C96 262.4 121.6 224 153.6 224L224 224l0 51.2c0 16 12.8 28.8 32 28.8s32-12.8 32-28.8L288 224l352 0 0 51.2c0 16 12.8 28.8 32 28.8s32-12.8 32-28.8L704 224l38.4 0c32 0 57.6 38.4 57.6 70.4L800 320 96 320 96 294.4z"
+              p-id="4045"
+            ></path>
+            <path
+              d="M755.2 512c-131.2 0-240 108.8-240 240s108.8 240 240 240 240-108.8 240-240S889.6 512 755.2 512zM755.2 928c-96 0-176-80-176-176s80-176 176-176 176 80 176 176S854.4 928 755.2 928z"
+              p-id="4046"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="Drawer-menu-wrapper"
+      title="设置"
+      @click="setDrawerComponent('appDrawerSettings')"
+      :class="{ 'is-active': currentDrawer === 'appDrawerSettings' }"
     >
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
           <svg
             class="Icon-svg"
-            viewBox="0 0 1027 1024"
-            version="1.1"
+            version="1.2"
+            baseProfile="tiny"
             xmlns="http://www.w3.org/2000/svg"
-            p-id="3301"
-            width="32"
-            height="32"
+            viewBox="0 0 19.5 20"
+            width="18"
           >
             <path
-              d="M983.838803 313.362669A511.938806 511.938806 0 1 0 1023.96018 512.035755a508.619448 508.619448 0 0 0-40.121377-198.673086zM561.712074 796.404116c0 21.929697-21.540943 39.662847-48.115749 39.662847s-48.115749-17.763054-48.115748-39.662847V409.494486c0-21.929697 21.540943-39.662847 48.115748-39.662847s48.115749 17.763054 48.115749 39.662847zM513.596325 305.607531a58.81146 58.81146 0 1 1 58.81146-58.81146 58.81146 58.81146 0 0 1-58.81146 58.81146z"
-              p-id="3302"
-            ></path>
+              d="M17.2,11c0-0.3,0.1-0.6,0.1-1s0-0.7-0.1-1l2.1-1.6c0.2-0.1,0.2-0.4,0.1-0.6l-2-3.5C17.3,3.1,17,3,16.8,3.1
+              l-2.5,1c-0.5-0.4-1.1-0.7-1.7-1l-0.4-2.7C12.2,0.2,12,0,11.7,0h-4C7.5,0,7.3,0.2,7.2,0.4L6.9,3.1c-0.6,0.3-1.2,0.6-1.7,1l-2.5-1
+              C2.4,3,2.2,3.1,2.1,3.3l-2,3.5C-0.1,6.9,0,7.2,0.2,7.4L2.3,9c0,0.3-0.1,0.6-0.1,1s0,0.7,0.1,1l-2.1,1.6C0,12.8-0.1,13,0.1,13.3
+              l2,3.5c0.1,0.2,0.4,0.3,0.6,0.2l2.5-1c0.5,0.4,1.1,0.7,1.7,1l0.4,2.6c0,0.2,0.2,0.4,0.5,0.4h4c0.3,0,0.5-0.2,0.5-0.4l0.4-2.6
+              c0.6-0.3,1.2-0.6,1.7-1l2.5,1c0.2,0.1,0.5,0,0.6-0.2l2-3.5c0.1-0.2,0.1-0.5-0.1-0.6L17.2,11z M9.7,13.5c-1.9,0-3.5-1.6-3.5-3.5
+              s1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S11.7,13.5,9.7,13.5z"
+            />
           </svg>
         </div>
       </div>
@@ -144,24 +160,24 @@
 
 <script>
 export default {
-  name: "Drawer-menu",
+  name: 'Drawer-menu',
 
   computed: {
     currentDrawer() {
-      return this.$store.getters.currentDrawer;
+      return this.$store.getters.currentDrawer
     },
   },
 
   methods: {
     setDrawerComponent(component) {
       const payload = {
-        key: "currentDrawer",
+        key: 'currentDrawer',
         val: component,
-      };
-      this.$store.dispatch("setViewState", payload);
+      }
+      this.$store.dispatch('setViewState', payload)
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -189,7 +205,7 @@ export default {
   }
   &::after {
     background-color: var(--color-accent);
-    content: "";
+    content: '';
     margin: 0 auto;
     position: absolute;
     right: 0;
@@ -217,5 +233,9 @@ export default {
 
 .app-theme--image .Drawer-menu {
   background-color: transparent;
+}
+.Icon-svg--calendar {
+  width: 18px;
+  height: 18px;
 }
 </style>

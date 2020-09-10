@@ -29,7 +29,7 @@
         </svg>
       </div>
       <!-- skip -->
-      <div class="Icon-wrapper" title="跳过" @click="skipRound">
+      <div v-if="isDevelopment" class="Icon-wrapper" title="跳过" @click="skipRound">
         <svg
           class="Icon-svg"
           viewBox="0 0 1024 1024"
@@ -95,11 +95,13 @@
 <script>
 import { EventBus } from '@/utils/EventBus'
 import { ipcRenderer } from 'electron'
+const isDevelopment = process.env.NODE_ENV === 'development'
 
 export default {
   name: 'TimerFooter',
   data() {
     return {
+      isDevelopment: isDevelopment,
       currentMousePosition: {
         x: null,
         y: null,

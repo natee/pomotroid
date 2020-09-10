@@ -71,11 +71,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Container {
-  max-height: calc(100% - 36px);
-  overflow-y: auto;
-}
-
 .Setting-wrapper {
   align-items: center;
   border-left: 3px solid;

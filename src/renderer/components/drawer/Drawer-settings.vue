@@ -57,15 +57,26 @@
         :class="minToTrayOnClose ? 'is-active' : 'is-inactive'"
       ></div>
     </div>
+
+    <div class="Text--Center App-info">
+      <p>版本 {{ version }}</p>
+      <p>Copyright &copy {{year}} natee.</p>
+    </div>
   </div>
 </template>
 
 <script>
 import { ipcRenderer } from 'electron'
+import * as pckg from './../../../../package.json'
 
 export default {
   name: 'Drawer-settings',
-
+  data() {
+    return {
+      version: pckg.version,
+      year: new Date().getFullYear()
+    }
+  },
   computed: {
     alwaysOnTop() {
       return this.$store.getters.alwaysOnTop
@@ -165,4 +176,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.App-info{
+  font-size: 10px;
+  line-height: 1.5em;
+  color: var(--color-foreground-darker);
+}
+</style>
 

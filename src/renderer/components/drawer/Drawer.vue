@@ -9,7 +9,7 @@
 
 <script>
 import appDrawerMenu from '@/components/drawer/Drawer-menu'
-import appDrawerAbout from '@/components/drawer/Drawer-about'
+import appDrawerHistory from '@/components/drawer/Drawer-history'
 import appDrawerImage from '@/components/drawer/Drawer-image'
 import appDrawerSettings from '@/components/drawer/Drawer-settings'
 import appDrawerTheme from '@/components/drawer/Drawer-theme'
@@ -20,7 +20,7 @@ export default {
 
   components: {
     appDrawerMenu,
-    appDrawerAbout,
+    appDrawerHistory,
     appDrawerImage,
     appDrawerSettings,
     appDrawerTheme,

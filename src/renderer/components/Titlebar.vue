@@ -4,7 +4,7 @@
     <div
       class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--single"
       style="position: absolute;"
-      title="Settings"
+      title="设置"
       @click="toggleDrawer"
     >
       <div class="Menu-wrapper" :class="drawerOpen ? 'is-collapsed' : ''">

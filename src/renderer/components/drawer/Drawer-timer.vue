@@ -8,16 +8,16 @@
       <div class="Slider-wrapper">
         <input
           type="range"
-          min="1"
+          min="10"
           :max="maxTime"
-          step="1"
+          step="5"
           class="Slider Slider--red"
           v-model.number="localTimeWork"
           @change="setTimeWork($event, 'work')"
         />
         <div
           class="Slider-bar Slider-bar--red"
-          :style="{ width: calcPercentage(localTimeWork, maxTime) + '%' }"
+          :style="{ width: calcPercentage(localTimeWork, maxTime, 10) + '%' }"
         ></div>
       </div>
     </div>
@@ -31,16 +31,16 @@
       <div class="Slider-wrapper">
         <input
           type="range"
-          min="1"
-          :max="maxTime"
-          step="1"
+          min="5"
+          :max="maxShortBreakTime"
+          step="5"
           class="Slider Slider--green"
           v-model.number="localTimeShortBreak"
           @change="setTimeShortBreak($event, 'short-break')"
         />
         <div
           class="Slider-bar Slider-bar--green"
-          :style="{ width: calcPercentage(localTimeShortBreak, maxTime) + '%' }"
+          :style="{ width: calcPercentage(localTimeShortBreak, maxShortBreakTime, 5) + '%' }"
         ></div>
       </div>
     </div>
@@ -54,16 +54,16 @@
       <div class="Slider-wrapper">
         <input
           type="range"
-          min="1"
-          :max="maxTime"
-          step="1"
+          min="5"
+          :max="maxLongBreakTime"
+          step="5"
           class="Slider Slider--blue"
           v-model.number="localTimeLongBreak"
           @change="setTimeLongBreak($event, 'long-break')"
         />
         <div
           class="Slider-bar Slider-bar--blue"
-          :style="{ width: calcPercentage(localTimeLongBreak, maxTime) + '%' }"
+          :style="{ width: calcPercentage(localTimeLongBreak, maxLongBreakTime, 5) + '%' }"
         ></div>
       </div>
     </div>
@@ -112,6 +112,8 @@ export default {
       localTimeWork: 0,
       localWorkRounds: 0,
       maxTime: 90,
+      maxShortBreakTime: 20,
+      maxLongBreakTime: 45,
       maxRounds: 12,
     };
   },
@@ -140,8 +142,8 @@ export default {
   },
 
   methods: {
-    calcPercentage(val, max) {
-      return (val / max) * 100;
+    calcPercentage(val, max, min = 0) {
+      return ((val - min) / (max - min)) * 100;
     },
 
     // complex conditional to correctly position slider-bar for round slider

@@ -33,11 +33,12 @@ function generateSettings() {
  * Creates and returns an instance of LocalStore with defaults.
  *
  * @export
+* @param {string} storeFile - The name of json file to store.
  * @returns {LocalStore} Instance of LocalStore.
  */
-export function createLocalStore() {
+export function createLocalStore(storeFile = 'user-preferences') {
   // copy defaults object
-  return new LocalStore('user-preferences', Object.assign({}, defaults))
+  return new LocalStore(storeFile, storeFile === 'user-preferences' ? Object.assign({}, defaults) : Object.create(null))
 }
 
 /**

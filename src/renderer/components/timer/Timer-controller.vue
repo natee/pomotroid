@@ -30,6 +30,11 @@ export default {
 
   methods: {
     checkRound() {
+      // 专注时间完成，存储时间
+      if (this.currentRound === 'work'){
+        EventBus.$emit('store-round-end')
+      }
+
       if (this.currentRound === 'work' && this.round >= this.workRounds) {
         this.$store.dispatch('setCurrentRound', 'long-break')
         this.$store.dispatch('incrementTotalWorkRounds')
