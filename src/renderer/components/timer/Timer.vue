@@ -122,8 +122,6 @@ import appTimerFooter from '@/components/timer/Timer-footer'
 import { EventBus } from '@/utils/EventBus'
 import { logger } from '@/utils/logger'
 import userHistory from '@/utils/History'
-// import { formatDate } from '@/utils/helper'
-
 
 export default {
   components: {

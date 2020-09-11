@@ -1,18 +1,21 @@
+import { join } from 'path'
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 const config = {
   d3: {
-    depUrl: '/static/js/d3.min.js',
+    depUrl: isDevelopment ? '/static/js/d3.min.js' : join(__static, 'js/d3.min.js'),
     isReady: false,
   },
   moment: {
-    depUrl: '/static/js/moment/moment.min.js',
+    depUrl: isDevelopment ? '/static/js/moment/moment.min.js' : join(__static, 'js/moment/moment.min.js'),
     isReady: false,
   },
   'moment-zh-cn': {
-    depUrl: '/static/js/moment/zh-cn.js',
+    depUrl: isDevelopment ? '/static/js/moment/zh-cn.js' : join(__static, 'js/moment/zh-cn.js'),
     isReady: false,
   },
   'cal-heatmap': {
-    depUrl: '/static/js/cal-heatmap.js',
+    depUrl: isDevelopment ? '/static/js/cal-heatmap.js' : join(__static, 'js/cal-heatmap.js'),
     isReady: false,
   },
 }

@@ -57,6 +57,14 @@
         :class="minToTrayOnClose ? 'is-active' : 'is-inactive'"
       ></div>
     </div>
+    <div class="Setting-wrapper">
+      <p class="Setting-title">自动检查最新版本</p>
+      <div
+        class="Checkbox"
+        @click="selectAutoUpdate"
+        :class="autoUpdate ? 'is-active' : 'is-inactive'"
+      ></div>
+    </div>
 
     <div class="Text--Center App-info">
       <p>版本 {{ version }}</p>
@@ -96,6 +104,10 @@ export default {
 
     minToTrayOnClose() {
       return this.$store.getters.minToTrayOnClose
+    },
+
+    autoUpdate() {
+      return this.$store.getters.autoUpdate
     },
 
     notifications() {
@@ -155,6 +167,15 @@ export default {
       const payload = {
         key: 'minToTrayOnClose',
         val: !this.minToTrayOnClose
+      }
+      this.$store.dispatch('setSetting', payload)
+      this.$store.dispatch('setViewState', payload)
+    },
+
+    selectAutoUpdate() {
+      const payload = {
+        key: 'autoUpdate',
+        val: !this.autoUpdate
       }
       this.$store.dispatch('setSetting', payload)
       this.$store.dispatch('setViewState', payload)

@@ -11,6 +11,7 @@ import {
   nativeImage,
   protocol,
   screen,
+  remote
 } from 'electron'
 
 const path = require('path')
@@ -38,7 +39,7 @@ app.on('ready', () => {
 
   createProtocol()
   createWindow()
-  createMenu()
+  // createMenu()
 
   const minToTray = localStore.get('minToTray')
   const alwaysOnTop = localStore.get('alwaysOnTop')
@@ -114,7 +115,9 @@ function getNewWindowPosition() {
   const primaryDisplay = screen.getPrimaryDisplay()
 
   // Center window horizontally below the tray icon
-  const x = Math.round(trayBounds.x + (trayBounds.width / 2) - (windowBounds.width / 2))
+  const x = Math.round(
+    trayBounds.x + trayBounds.width / 2 - windowBounds.width / 2
+  )
 
   // Position window 4 pixels vertically below the tray icon
   // Adjust according if tray is at the bottom
@@ -141,7 +144,8 @@ function toggleWindow() {
 
 // 托盘操作
 function createTray() {
-  const trayIconFile = process.platform === 'darwin' ? 'icon--macos--tray.png' : 'icon.png'
+  const trayIconFile =
+    process.platform === 'darwin' ? 'icon--macos--tray.png' : 'icon.png'
   tray = new Tray(path.join(__static, trayIconFile))
   tray.setToolTip('🍅番茄计时器\n点击复原')
   tray.on('click', () => {
@@ -198,15 +202,14 @@ function createMenu() {
           label: '静音',
           click: () => {
             mainWindow.webContents.send('volume-off')
-          }
+          },
         },
         {
           label: '取消静音',
           click: () => {
             mainWindow.webContents.send('volume-on')
-          }
+          },
         },
-        
       ],
     },
     {
@@ -214,8 +217,8 @@ function createMenu() {
       submenu: [
         {
           label: '最小化',
-          role: 'minimize'
-        }
+          role: 'minimize',
+        },
       ],
     },
     {
@@ -223,25 +226,33 @@ function createMenu() {
       submenu: [
         {
           label: '关于番茄计时器',
-          role: 'about'
+          role: 'about',
         },
         {
-          type: 'separator'
+          type: 'separator',
+        },
+        {
+          label: '检查更新',
+          click: () => {
+            mainWindow.webContents.send('check-update')
+          },
+        },
+        {
+          type: 'separator',
         },
         {
           label: '使用帮助',
           click: async () => {
             const { shell } = require('electron')
             await shell.openExternal('https://github.com/natee/pomotroid')
-          }
+          },
         },
       ],
-    }
+    },
   ]
 
   // osx 第一个菜单是应用程序名称
   if (process.platform === 'darwin') {
-    console.log('app:',app)
     menuTemplate.unshift({
       label: app.getName(),
       submenu: [
@@ -261,22 +272,3 @@ function createMenu() {
   Menu.setApplicationMenu(appMenu)
 }
 
-/**
- * Auto Updater
- *
- * Uncomment the following code below and install `electron-updater` to
- * support auto updating. Code Signing with a valid certificate is required.
- * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
- */
-
-/*
-import { autoUpdater } from 'electron-updater'
-
-autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall()
-})
-
-app.on('ready', () => {
-  if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
-})
- */

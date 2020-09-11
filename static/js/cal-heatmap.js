@@ -1052,7 +1052,7 @@ var CalHeatMap = function() {
             var tooltipPositionY =
               self.positionSubDomainY(d.t) -
               self.tooltip._groups[0][0].offsetHeight -
-              options.cellSize / 2
+							options.cellSize / 2 + 8
 
             // Offset by the domain position
             tooltipPositionX += parseInt(domainNode.getAttribute('x'), 10)

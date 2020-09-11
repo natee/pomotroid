@@ -9,6 +9,7 @@
     <app-notification v-else-if="os !== 'win32' && notifications" />
 
     <img v-if="useBackground && usedImage" class="app-bg" :src="usedImage" />
+    <app-update />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import appNotification from '@/components/notification/Notification'
 import appNotificationWin from '@/components/notification/Notification-win'
 import appTimer from '@/components/timer/Timer'
 import appTitlebar from '@/components/Titlebar'
+import appUpdate from '@/components/Update'
 import themer from '@/utils/Themer'
 import userImage from '@/utils/UserImage'
 
@@ -30,6 +32,7 @@ export default {
     appNotificationWin,
     appTimer,
     appTitlebar,
+    appUpdate
   },
 
   computed: {

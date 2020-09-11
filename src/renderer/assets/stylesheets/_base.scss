@@ -15,7 +15,8 @@ p {
 
 .Container {
   padding: 0 18px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .Drawer-heading {

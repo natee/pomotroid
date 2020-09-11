@@ -8,7 +8,7 @@
       <div class="Slider-wrapper">
         <input
           type="range"
-          min="10"
+          min="1"
           :max="maxTime"
           step="5"
           class="Slider Slider--red"
