@@ -39,7 +39,7 @@ app.on('ready', () => {
 
   createProtocol()
   createWindow()
-  // createMenu()
+  createMenu()
 
   const minToTray = localStore.get('minToTray')
   const alwaysOnTop = localStore.get('alwaysOnTop')
@@ -236,9 +236,6 @@ function createMenu() {
           click: () => {
             mainWindow.webContents.send('check-update')
           },
-        },
-        {
-          type: 'separator',
         },
         {
           label: '使用帮助',
